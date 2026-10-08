@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
+const BACKEND_URL = (
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001"
+).replace(/\/$/, "");
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "standalone",
+  // Proxy backend API requests through Next.js rewrite engine
+  async rewrites() {
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: `${BACKEND_URL}/api/v1/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
