@@ -1,12 +1,11 @@
-import { Activity, Bot, Lock, Puzzle, Users2, Workflow } from "lucide-react";
+import { Code2, Compass, Layers, Lock, Palette, Zap } from "lucide-react";
 import { type SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "Nexus",
-  title:
-    "Nexus — The Intelligent Operational Workspace & Real-Time Intelligence Platform",
+  name: "ClientHub",
+  title: "ClientHub — Modern Full-Stack Ready Client Application Boilerplate",
   description:
-    "Unify your team operations, automated workflows, and business intelligence in one high-performance platform. Engineered for fast-growing companies and enterprise teams.",
+    "A production-ready client application foundation with secure authentication, modular UI architecture, and robust state management for any modern web project.",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   ogImage: "/og.png",
   links: {
@@ -17,59 +16,59 @@ export const siteConfig: SiteConfig = {
   },
   mainNav: [
     {
-      title: "Platform",
+      title: "Features",
       href: "#features",
       items: [
         {
-          title: "Intelligent Workflows",
+          title: "Authentication Flow",
           href: "#features",
           description:
-            "Automate multi-step business operations with event-driven triggers.",
-          icon: Workflow,
-        },
-        {
-          title: "Live Analytics & Telemetry",
-          href: "#features",
-          description:
-            "Real-time revenue metrics, funnel telemetry, and retention diagnostics.",
-          icon: Activity,
-        },
-        {
-          title: "AI Co-pilot & Automation",
-          href: "#features",
-          description:
-            "Predictive insights and natural language query generation for your data.",
-          icon: Bot,
-        },
-        {
-          title: "Team Workspaces",
-          href: "#features",
-          description:
-            "Collaborative canvas with multiplayer presence and thread discussions.",
-          icon: Users2,
-        },
-        {
-          title: "Enterprise Governance",
-          href: "#features",
-          description:
-            "SOC 2 Type II, field-level RBAC, SAML/SSO, and encrypted audit trails.",
+            "Ready-to-use login, registration, email OTP verification, and password reset.",
           icon: Lock,
         },
         {
-          title: "Ecosystem Integrations",
+          title: "Modular UI Components",
           href: "#features",
           description:
-            "Direct 2-way sync with Slack, Stripe, GitHub, Segment, and 200+ apps.",
-          icon: Puzzle,
+            "Accessible, responsive, and customizable components styled with Tailwind CSS.",
+          icon: Palette,
+        },
+        {
+          title: "State Management",
+          href: "#features",
+          description:
+            "Persistent store with Zustand, local storage caching, and cookie sync.",
+          icon: Layers,
+        },
+        {
+          title: "API & Data Layer",
+          href: "#features",
+          description:
+            "Pre-configured client & server HTTP layers with caching and error handling.",
+          icon: Code2,
+        },
+        {
+          title: "High Performance",
+          href: "#features",
+          description:
+            "Optimized Next.js App Router setup with fast rendering and small bundles.",
+          icon: Zap,
+        },
+        {
+          title: "Developer Experience",
+          href: "#features",
+          description:
+            "Strict TypeScript, clean linting, and organized folder architecture.",
+          icon: Compass,
         },
       ],
     },
     {
-      title: "Solutions",
+      title: "How It Works",
       href: "#how-it-works",
     },
     {
-      title: "Interactive Demo",
+      title: "Showcase",
       href: "#showcase",
     },
     {
@@ -77,7 +76,7 @@ export const siteConfig: SiteConfig = {
       href: "#pricing",
     },
     {
-      title: "Customers",
+      title: "Testimonials",
       href: "#testimonials",
     },
     {
@@ -87,32 +86,32 @@ export const siteConfig: SiteConfig = {
   ],
   footerSections: [
     {
-      title: "Platform",
+      title: "Product",
       links: [
-        { title: "Intelligent Workflows", href: "#features" },
-        { title: "Real-Time Telemetry", href: "#features" },
-        { title: "AI Automation", href: "#features" },
-        { title: "Team Workspaces", href: "#features" },
-        { title: "Security & Compliance", href: "#features" },
-        { title: "Changelog", href: "#", badge: "v2.4" },
+        { title: "Features", href: "#features" },
+        { title: "Authentication", href: "/login" },
+        { title: "Component Showcase", href: "#showcase" },
+        { title: "How It Works", href: "#how-it-works" },
+        { title: "Pricing Plans", href: "#pricing" },
+        { title: "Changelog", href: "#", badge: "v2.0" },
       ],
     },
     {
-      title: "Solutions",
+      title: "Architecture",
       links: [
-        { title: "High-Growth Startups", href: "#how-it-works" },
-        { title: "Scale-ups & SaaS", href: "#how-it-works" },
-        { title: "Global Enterprise", href: "#how-it-works" },
-        { title: "FinTech & Banking", href: "#how-it-works" },
-        { title: "Customer Case Studies", href: "#testimonials" },
+        { title: "Next.js App Router", href: "#" },
+        { title: "Zustand State Store", href: "#" },
+        { title: "Tailwind CSS v4", href: "#" },
+        { title: "TypeScript Types", href: "#" },
+        { title: "API Integration", href: "#" },
       ],
     },
     {
       title: "Resources",
       links: [
-        { title: "Platform Documentation", href: "#", external: false },
-        { title: "API Reference & SDKs", href: "#", external: false },
-        { title: "System Status", href: "#", badge: "99.99%" },
+        { title: "Documentation", href: "#", external: false },
+        { title: "API Reference", href: "#", external: false },
+        { title: "System Status", href: "#", badge: "All Good" },
         { title: "Community Forum", href: "#", external: false },
         {
           title: "GitHub Repository",
@@ -124,9 +123,8 @@ export const siteConfig: SiteConfig = {
     {
       title: "Company",
       links: [
-        { title: "About Nexus", href: "#" },
-        { title: "Careers", href: "#", badge: "We're Hiring" },
-        { title: "Press & Brand Assets", href: "#" },
+        { title: "About", href: "#" },
+        { title: "Careers", href: "#", badge: "Hiring" },
         { title: "Privacy Policy", href: "#" },
         { title: "Terms of Service", href: "#" },
       ],

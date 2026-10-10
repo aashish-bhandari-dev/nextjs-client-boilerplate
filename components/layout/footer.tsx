@@ -51,9 +51,9 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Join 35,000+ operations leaders and engineering executives
-              receiving our weekly insights on workflow automation, telemetry,
-              and platform scaling.
+              Join 35,000+ developers and digital product builders receiving
+              our weekly updates on web development, modern architecture, and
+              component libraries.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export function Footer() {
               >
                 <Input
                   type="email"
-                  placeholder="Enter your developer email..."
+                  placeholder="Enter your email address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-background h-10 text-sm"
@@ -102,9 +102,8 @@ export function Footer() {
               <span className="font-bold text-base">{siteConfig.name}</span>
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              The unified operational workspace and real-time intelligence
-              platform engineered to eliminate workflow bottlenecks and empower
-              high-velocity teams.
+              A comprehensive client application boilerplate built with Next.js,
+              TypeScript, Zustand, and Tailwind CSS to jumpstart your next web project.
             </p>
 
             {/* Operational Status Badge */}

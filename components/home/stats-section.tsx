@@ -1,44 +1,44 @@
 import * as React from "react";
-import { Activity, Clock, Coins, ShieldCheck } from "lucide-react";
+import { Clock, ShieldCheck, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { type StatItem } from "@/types";
 
 const defaultStats: (StatItem & { icon: React.ElementType })[] = [
   {
     id: "1",
-    label: "Processed Volume",
-    value: "NPR 1.4B",
-    suffix: "+",
+    label: "Performance Score",
+    value: "99",
+    suffix: "/100",
     description:
-      "Annual transactional and operational throughput across connected customer platforms in Nepal and globally.",
-    icon: Coins,
+      "Optimized Core Web Vitals, minimal bundle footprint, and instant page rendering.",
+    icon: Zap,
   },
   {
     id: "2",
-    label: "Guaranteed SLA Uptime",
+    label: "Platform Reliability",
     value: "99.99",
     suffix: "%",
     description:
-      "Carrier-grade reliability with automated multi-region failover and 24/7 telemetry.",
+      "Production-ready stability with robust error boundaries and request retry logic.",
     icon: ShieldCheck,
   },
   {
     id: "3",
-    label: "Global Event Latency",
-    value: "<18",
+    label: "Average Request Latency",
+    value: "<25",
     suffix: "ms",
     description:
-      "Sub-second streaming pipeline execution and edge dispatch across 240+ PoPs.",
+      "Low-latency response times with client-side caching and request deduplication.",
     icon: Clock,
   },
   {
     id: "4",
-    label: "Active Daily Operators",
-    value: "150k",
+    label: "Active Projects",
+    value: "10k",
     suffix: "+",
     description:
-      "Engineers, analysts, and operations leads coordinating in Nexus workspaces.",
-    icon: Activity,
+      "Teams building and launching modern applications powered by this template.",
+    icon: Users,
   },
 ];
 
@@ -52,7 +52,7 @@ export function StatsSection() {
             return (
               <Card
                 key={stat.id}
-                className="border-border/60 bg-card/80 backdrop-blur-xs transition-transform hover:-translate-y-1 hover:shadow-md"
+                className="border-border/60 bg-card/80 backdrop-blur-xs transition-transform hover:-translate-y-1"
               >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -63,16 +63,18 @@ export function StatsSection() {
                       <Icon className="size-4" />
                     </div>
                   </div>
+
                   <div className="mt-4 flex items-baseline gap-1">
-                    <span className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+                    <span className="text-3xl font-extrabold tracking-tight text-foreground">
                       {stat.value}
                     </span>
                     {stat.suffix && (
-                      <span className="text-xl font-bold text-muted-foreground">
+                      <span className="text-sm font-bold text-primary">
                         {stat.suffix}
                       </span>
                     )}
                   </div>
+
                   {stat.description && (
                     <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
                       {stat.description}

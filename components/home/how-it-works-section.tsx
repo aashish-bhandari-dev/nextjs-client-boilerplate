@@ -1,40 +1,40 @@
 import * as React from "react";
-import { Database, Gauge, Shield, Workflow } from "lucide-react";
+import { Code, Globe, Layers, UserCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 const steps = [
   {
     step: "01",
-    title: "Connect Data Sources",
+    title: "Configure & Connect",
     description:
-      "Plug in your existing databases, API endpoints, payment providers, and webhook sinks in minutes.",
-    code: '// Connect webhook source\nPOST /api/v1/integrations/connect\n{\n  "provider": "stripe",\n  "mode": "live_sync"\n}',
-    icon: Database,
+      "Set your environment variables, customize site branding, and point to your backend API endpoints.",
+    code: '// .env configuration\nNEXT_PUBLIC_APP_NAME="YourApp"\nNEXT_PUBLIC_API_URL="https://api.domain.com"',
+    icon: Code,
   },
   {
     step: "02",
-    title: "Configure Roles & Guardrails",
+    title: "Authenticate Users",
     description:
-      "Assign role-based access, configure workspace security boundaries, and set approval thresholds.",
-    code: '// Define workspace permissions\nconst teamPolicy = {\n  role: "ENGINEERING_LEAD",\n  canApproveDeployments: true,\n  auditLogging: "ENFORCED"\n};',
-    icon: Shield,
+      "Ready-to-use registration, login, email OTP verification, and JWT session handling via Zustand.",
+    code: '// Complete auth hooks & repo\nawait authRepo.login({\n  credentials: { identifier, password },\n  onSuccess: (data) => setAuth(data)\n});',
+    icon: UserCheck,
   },
   {
     step: "03",
-    title: "Orchestrate Workflows",
+    title: "Build Your Features",
     description:
-      "Build automated event loops, conditional logic branches, and notifications using the canvas or code.",
-    code: "// Visual or Code-driven trigger\nwhen(Events.CustomerSignup)\n  .verifyKYC()\n  .provisionTenant()\n  .notifySlack('#growth-ops');",
-    icon: Workflow,
+      "Assemble user interfaces quickly using our modular Tailwind CSS components and state stores.",
+    code: '// Modular UI & Store\nconst { user } = useAuthStore();\nreturn <DashboardView user={user} />;',
+    icon: Layers,
   },
   {
     step: "04",
-    title: "Scale with Live Telemetry",
+    title: "Deploy to Production",
     description:
-      "Observe system health, track business KPIs, and detect bottlenecks with real-time streaming telemetry.",
-    code: '// Real-time streaming metrics\nStreamTelemetry.subscribe({\n  metric: "pipeline_latency",\n  p99ThresholdMs: 25\n});',
-    icon: Gauge,
+      "Deploy anywhere with confidence using Next.js App Router, Docker support, and optimized assets.",
+    code: '// Production build & start\nnpm run build\nnpm run start',
+    icon: Globe,
   },
 ];
 
@@ -50,14 +50,14 @@ export function HowItWorksSection() {
             variant="outline"
             className="text-xs px-3 py-1 text-primary border-primary/30"
           >
-            Frictionless Onboarding
+            Streamlined Architecture
           </Badge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
-            How Nexus Powers Your Operations
+            From Setup to Production in Minutes
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            From zero to fully automated operations in four straightforward
-            steps. No complex infrastructure overhead required.
+            A clean, developer-friendly workflow engineered to get your application
+            from initial setup to production deployment without friction.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export function HowItWorksSection() {
             return (
               <Card
                 key={item.step}
-                className="relative overflow-hidden border-border/70 bg-card shadow-xs transition-transform hover:-translate-y-1"
+                className="relative overflow-hidden border-border/70 bg-card transition-transform hover:-translate-y-1"
               >
                 <CardContent className="p-6 flex flex-col justify-between h-full space-y-4">
                   <div>
@@ -79,15 +79,18 @@ export function HowItWorksSection() {
                         <Icon className="size-4" />
                       </div>
                     </div>
+
                     <h3 className="mt-4 text-base font-bold text-foreground">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>
                   </div>
 
-                  <div className="rounded-lg bg-muted/60 p-3 font-mono text-[11px] text-foreground border border-border/50 overflow-x-auto whitespace-pre">
+                  {/* Code snippet preview */}
+                  <div className="rounded-lg border border-border/60 bg-muted/40 p-3 font-mono text-[11px] text-muted-foreground leading-tight overflow-x-auto whitespace-pre">
                     {item.code}
                   </div>
                 </CardContent>

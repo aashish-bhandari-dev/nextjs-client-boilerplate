@@ -1,3 +1,7 @@
+export * from './base.types';
+export * from './user.types';
+export * from './auth.types';
+
 import { type LucideIcon } from "lucide-react";
 
 export interface NavItem {

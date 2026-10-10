@@ -20,54 +20,57 @@ const plans = [
     id: "starter",
     name: "Starter",
     description:
-      "Ideal for early-stage teams, prototypes, and growing startups.",
+      "Ideal for personal projects, prototypes, and early-stage ideas.",
     monthlyPrice: 0,
     yearlyPrice: 0,
     popular: false,
     features: [
-      "Up to 3 team seats included",
-      "50,000 monthly event transactions",
-      "5 active automated workflows",
-      "Standard telemetry retention (7 days)",
-      "Community Discord & standard support",
+      "Complete client boilerplate source",
+      "Next.js App Router & TypeScript",
+      "Full authentication & session flow",
+      "Modular Tailwind CSS UI components",
+      "Community forum support",
     ],
     cta: "Start Free Forever",
+    href: "/register",
   },
   {
-    id: "growth",
-    name: "Growth",
+    id: "pro",
+    name: "Professional",
     description:
-      "Built for scaling teams requiring high throughput, automation, and collaboration.",
-    monthlyPrice: 4999,
-    yearlyPrice: 3999,
+      "Built for production web applications, SaaS startups, and growing teams.",
+    monthlyPrice: 2900,
+    yearlyPrice: 1900,
     popular: true,
     features: [
-      "Up to 25 team seats included",
-      "1,500,000 monthly event transactions",
-      "Unlimited automated event workflows",
-      "Extended telemetry retention (90 days)",
-      "AI anomaly detection & root-cause insights",
-      "Priority 24/7 Slack & email support",
+      "Everything in Starter included",
+      "Persistent Zustand state management",
+      "Pre-configured client & server API layer",
+      "Interactive email verification & recovery",
+      "Dark and light theme toggle",
+      "Priority updates and email support",
     ],
-    cta: "Start 14-Day Free Trial",
+    cta: "Get Started Free",
+    href: "/register",
   },
   {
     id: "enterprise",
     name: "Enterprise",
     description:
-      "For organizations demanding bespoke governance, dedicated infrastructure, and SLAs.",
-    monthlyPrice: 19999,
-    yearlyPrice: 15999,
+      "For organizations demanding custom architectures, priority assistance, and SLAs.",
+    monthlyPrice: 9900,
+    yearlyPrice: 7900,
     popular: false,
     features: [
-      "Unlimited team seats & workspaces",
-      "Unlimited monthly event throughput",
-      "Dedicated multi-region VPC cluster",
-      "SAML 2.0 / Okta SSO & SCIM directory sync",
-      "99.99% Guaranteed uptime SLA",
-      "Dedicated Technical Account Manager",
+      "Everything in Professional included",
+      "Custom role & permission matrices",
+      "Production Docker & CI/CD configurations",
+      "Dedicated integration guidance",
+      "Commercial multi-project license",
+      "Direct technical support channel",
     ],
-    cta: "Contact Enterprise Team",
+    cta: "Contact Team",
+    href: "/register",
   },
 ];
 
@@ -186,7 +189,7 @@ export function PricingSection() {
 
                 <CardFooter className="pt-4 border-t border-border/40">
                   <Link
-                    href="#showcase"
+                    href={plan.href || "/register"}
                     className={cn(
                       buttonVariants({
                         variant: plan.popular ? "default" : "outline",

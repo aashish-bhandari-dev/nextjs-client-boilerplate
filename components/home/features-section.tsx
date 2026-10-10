@@ -2,14 +2,14 @@
 
 import * as React from "react";
 import {
-  Activity,
-  Bot,
   CheckCircle2,
+  Code2,
+  Database,
+  Layers,
   Lock,
-  Puzzle,
+  Palette,
   Sparkles,
-  Users2,
-  Workflow,
+  Zap,
 } from "lucide-react";
 import {
   Card,
@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 
 interface Feature {
   id: string;
-  category: "all" | "automation" | "telemetry" | "security";
+  category: "all" | "auth" | "frontend" | "architecture";
   title: string;
   description: string;
   icon: React.ElementType;
@@ -33,94 +33,94 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: "workflows",
-    category: "automation",
-    title: "Autonomous Workflow Orchestration",
+    id: "auth",
+    category: "auth",
+    title: "Complete Authentication Flow",
     description:
-      "Compose complex multi-system pipelines with conditional triggers, scheduled cron loops, and automated error retries without writing boilerplate.",
-    icon: Workflow,
-    badge: "Automation",
-    highlights: [
-      "Visual drag-and-drop workflow builder",
-      "Sub-second event trigger execution",
-      "Automated rollbacks & dead-letter queues",
-    ],
-  },
-  {
-    id: "telemetry",
-    category: "telemetry",
-    title: "Real-Time Telemetry & Funnels",
-    description:
-      "Stream live business metrics, conversion funnels, and retention curves with millisecond-resolution telemetry and custom alerts.",
-    icon: Activity,
-    badge: "Intelligence",
-    highlights: [
-      "Live interactive time-series telemetry",
-      "Cohort retention & conversion heatmaps",
-      "Instant incident alerting to Slack & PagerDuty",
-    ],
-  },
-  {
-    id: "ai-copilot",
-    category: "automation",
-    title: "AI Predictive Anomaly Detection",
-    description:
-      "Intelligent models monitor your operational pipelines 24/7, diagnosing revenue regressions and system bottlenecks before they impact customers.",
-    icon: Bot,
-    badge: "AI Powered",
-    highlights: [
-      "Automated root-cause diagnostic reports",
-      "Natural language queries for complex schemas",
-      "Predictive resource capacity forecasting",
-    ],
-  },
-  {
-    id: "governance",
-    category: "security",
-    title: "Enterprise RBAC & Security Governance",
-    description:
-      "Protect sensitive records with granular field-level permission matrices, SAML/SSO integration, and immutable compliance audit logs.",
+      "Full authentication suite out-of-the-box: Sign in, registration, email OTP verification, password reset, and route protection.",
     icon: Lock,
-    badge: "Security",
+    badge: "Authentication",
     highlights: [
-      "SOC 2 Type II & HIPAA certified infrastructure",
-      "SAML 2.0 / Okta / Azure AD SSO integration",
-      "Cryptographically signed audit logs",
+      "Access & refresh token cookie management",
+      "Interactive 6-digit OTP email verification",
+      "Password reset and recovery flow",
     ],
   },
   {
-    id: "workspaces",
-    category: "telemetry",
-    title: "Multiplayer Team Workspaces",
+    id: "components",
+    category: "frontend",
+    title: "Modular UI Component Library",
     description:
-      "Live presence, synced cursor tracking, and shared operational canvases eliminate silos between engineering, product, and operations.",
-    icon: Users2,
-    badge: "Collaboration",
+      "Comprehensive set of accessible, responsive, and customizable components styled with Tailwind CSS for fast UI construction.",
+    icon: Palette,
+    badge: "Components",
     highlights: [
-      "Real-time multiplayer cursor presence",
-      "Threaded contextual workspace discussions",
-      "Immutable workspace version history",
+      "Buttons, inputs, dropdowns, and dialogs",
+      "Accessible keyboard navigation support",
+      "Consistent typography and spacing tokens",
     ],
   },
   {
-    id: "integrations",
-    category: "automation",
-    title: "200+ Turnkey Integrations",
+    id: "state",
+    category: "architecture",
+    title: "Zustand State Management",
     description:
-      "Plug directly into Stripe, GitHub, Slack, Segment, AWS, and PostgreSQL with bidirectional synchronization and zero data loss.",
-    icon: Puzzle,
-    badge: "Integrations",
+      "Lightweight, reactive global store with local storage persistence, cookie synchronization, and seamless hydration handling.",
+    icon: Layers,
+    badge: "State Store",
     highlights: [
-      "Bi-directional two-way sync pipelines",
-      "Native webhooks and REST / GraphQL endpoints",
-      "Guaranteed at-least-once event delivery",
+      "Synchronized session cookie storage",
+      "Persistent user state across reloads",
+      "Modular, easy-to-extend store slices",
+    ],
+  },
+  {
+    id: "api",
+    category: "architecture",
+    title: "Client & Server API Layer",
+    description:
+      "Pre-configured Axios client and Next.js server fetch wrapper with bearer token injection, request caching, and error formatting.",
+    icon: Database,
+    badge: "API Layer",
+    highlights: [
+      "Automatic token attachment on requests",
+      "In-flight request deduplication & TTL cache",
+      "Standardized error parsing utility",
+    ],
+  },
+  {
+    id: "theme",
+    category: "frontend",
+    title: "Theme Provider & Dark Mode",
+    description:
+      "Seamless dark and light theme switching with system detection, localStorage persistence, and no flash of unstyled content.",
+    icon: Zap,
+    badge: "Theming",
+    highlights: [
+      "System preference auto-detection",
+      "Instant theme toggle in navigation",
+      "Tailwind CSS v4 variable tokens",
+    ],
+  },
+  {
+    id: "dx",
+    category: "architecture",
+    title: "TypeScript & Production Ready",
+    description:
+      "End-to-end type safety, strict TypeScript configuration, and Next.js App Router best practices ready for production.",
+    icon: Code2,
+    badge: "Architecture",
+    highlights: [
+      "Strict TypeScript types for models and APIs",
+      "Next.js App Router layout composition",
+      "Linted and optimized build pipeline",
     ],
   },
 ];
 
 export function FeaturesSection() {
   const [activeCategory, setActiveCategory] = React.useState<
-    "all" | "automation" | "telemetry" | "security"
+    "all" | "auth" | "frontend" | "architecture"
   >("all");
 
   const filteredFeatures =
@@ -137,25 +137,23 @@ export function FeaturesSection() {
             variant="outline"
             className="text-xs px-3 py-1 text-primary border-primary/30"
           >
-            <Sparkles className="size-3 mr-1 inline" /> Built For High-Velocity
-            Teams
+            <Sparkles className="size-3 mr-1 inline" /> Built For Any Web Project
           </Badge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
-            Complete Operational Command in One Platform
+            Everything You Need To Build Modern Apps
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Replace disconnected spreadsheets, fragile custom scripts, and
-            fragmented tools with a unified platform engineered for clarity,
-            speed, and scale.
+            A solid, extensible foundation with authentication, responsive layouts,
+            API integrations, and modern state management ready to deploy.
           </p>
 
           {/* Category Filter Pills */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
             {[
-              { id: "all", label: "All Capabilities" },
-              { id: "automation", label: "Workflows & Automation" },
-              { id: "telemetry", label: "Telemetry & Insights" },
-              { id: "security", label: "Security & Governance" },
+              { id: "all", label: "All Features" },
+              { id: "auth", label: "Auth & Security" },
+              { id: "frontend", label: "UI & Components" },
+              { id: "architecture", label: "State & Architecture" },
             ].map((tab) => (
               <Button
                 key={tab.id}
@@ -179,7 +177,7 @@ export function FeaturesSection() {
             return (
               <Card
                 key={feature.id}
-                className="group relative overflow-hidden border-border/70 bg-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+                className="group relative overflow-hidden border-border/70 bg-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/40"
               >
                 <CardHeader className="space-y-3 pb-2">
                   <div className="flex items-center justify-between">

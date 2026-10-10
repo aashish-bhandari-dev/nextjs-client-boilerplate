@@ -9,36 +9,33 @@ import { type FaqItem } from "@/types";
 const faqs: FaqItem[] = [
   {
     id: "1",
-    question:
-      "How quickly can our team integrate existing databases and services?",
+    question: "How do I get started with this application boilerplate?",
     answer:
-      "Most teams complete their first live sync in under 15 minutes. We provide pre-built turnkey connectors for PostgreSQL, MySQL, Snowflake, Stripe, Slack, Segment, and AWS, alongside high-performance REST and GraphQL APIs for proprietary systems.",
+      "Clone the repository, install dependencies with npm install, set up your .env configuration, and run npm run dev. The complete authentication system, layouts, and components are ready immediately.",
   },
   {
     id: "2",
-    question:
-      "How does Nexus protect sensitive data and ensure regulatory compliance?",
+    question: "How does the authentication flow work?",
     answer:
-      "Nexus is SOC 2 Type II certified and GDPR compliant. All data is encrypted in transit using TLS 1.3 and at rest using AES-256. We support granular field-level permission masks, SAML 2.0 / Okta SSO, IP whitelisting, and immutable audit logs.",
+      "The boilerplate includes a full authentication suite: email/username sign in, new account registration, 6-digit email OTP verification, password recovery, and session cookies managed via Zustand.",
   },
   {
     id: "3",
-    question: "Can non-technical team members build and maintain workflows?",
+    question: "Can I customize the styling, colors, and branding?",
     answer:
-      "Yes. The visual workflow builder is designed for cross-functional collaboration. Engineers can author reusable logic modules, while product leads and operators can assemble multi-step event triggers without writing a single line of boilerplate.",
+      "Yes, completely. Styling is built using Tailwind CSS v4 and CSS custom variables in globals.css. You can change colors, typography, border radii, and dark/light mode tokens in seconds.",
   },
   {
     id: "4",
-    question:
-      "What happens if our event volume experiences an unexpected traffic spike?",
+    question: "How do I connect this frontend to my backend API?",
     answer:
-      "We never drop events or arbitrarily throttle your pipelines. High-throughput queues automatically absorb and buffer traffic bursts with zero data loss, guaranteeing at-least-once delivery even during peak demand.",
+      "Set your backend URL in NEXT_PUBLIC_API_URL. The pre-configured clientApi (Axios) and serverApi (Fetch) modules automatically attach Bearer tokens, deduplicate requests, and format errors.",
   },
   {
     id: "5",
-    question: "Can we deploy Nexus in our own private cloud or dedicated VPC?",
+    question: "Is this boilerplate ready for production deployment?",
     answer:
-      "Yes. Our Enterprise tier offers dedicated single-tenant VPC deployments across AWS, Google Cloud, and Microsoft Azure, complete with customized regional data residency and tailored 99.99% uptime SLAs.",
+      "Yes. It is equipped with strict TypeScript validation, Next.js App Router route handling, ESLint configurations, Docker support, and production build optimization out of the box.",
   },
 ];
 
@@ -60,14 +57,14 @@ export function FaqSection() {
             variant="outline"
             className="text-xs px-3 py-1 text-primary border-primary/30"
           >
-            <HelpCircle className="size-3 mr-1 inline" /> Got Questions?
+            <HelpCircle className="size-3 mr-1 inline" /> Common Inquiries
           </Badge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
             Frequently Asked Questions
           </h2>
           <p className="mt-4 max-w-xl text-base text-muted-foreground">
-            Everything you need to know about platform integration, governance,
-            and scaling.
+            Everything you need to know about setting up, customizing, and scaling
+            your web application.
           </p>
         </div>
 
@@ -95,10 +92,8 @@ export function FaqSection() {
                   />
                 </button>
                 {isOpen && (
-                  <CardContent className="px-5 pb-5 pt-0 text-xs text-muted-foreground leading-relaxed animate-in fade-in-50 duration-200">
-                    <div className="border-t border-border/60 pt-3">
-                      {faq.answer}
-                    </div>
+                  <CardContent className="px-5 pt-0 pb-5 text-xs text-muted-foreground leading-relaxed border-t border-border/40 mt-1">
+                    <p className="pt-3">{faq.answer}</p>
                   </CardContent>
                 )}
               </Card>

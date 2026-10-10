@@ -9,31 +9,31 @@ const testimonials: TestimonialItem[] = [
   {
     id: "1",
     name: "Marcus Vance",
-    role: "VP of Platform Engineering",
-    company: "HyperLogic Cloud",
+    role: "Product Lead",
+    company: "Apex Studio",
     avatar: "MV",
     content:
-      "Nexus cut our cross-service incident resolution time by 72%. Consolidating fragmented data pipelines and manual approval workflows into a single real-time canvas was a monumental upgrade.",
+      "This boilerplate saved our team weeks of foundational setup. Having clean authentication, typed API clients, and modern UI components out of the box is incredible.",
     rating: 5,
   },
   {
     id: "2",
     name: "Sarah Chen",
-    role: "Chief Technology Officer",
-    company: "Nova FinTech",
+    role: "Founder & CTO",
+    company: "Nova Digital",
     avatar: "SC",
     content:
-      "We scaled our platform from 50,000 to over 3.5 million daily event transactions with zero operational regressions. Nexus's event orchestration handled our peak traffic effortlessly.",
+      "We scaled our web application seamlessly. The Zustand store architecture and clean Next.js 16 setup made shipping features fast and stress-free.",
     rating: 5,
   },
   {
     id: "3",
     name: "Alex Rivera",
-    role: "Head of Product Operations",
+    role: "Senior Full-Stack Engineer",
     company: "Chrono Labs",
     avatar: "AR",
     content:
-      "The combination of autonomous event triggers and granular field-level RBAC gave us enterprise-grade governance from day one. Our operators ship with 10x more confidence.",
+      "The modular architecture, robust form validation with Zod, and rock-solid design system provide a world-class foundation for any product.",
     rating: 5,
   },
 ];
@@ -50,14 +50,14 @@ export function TestimonialsSection() {
             variant="outline"
             className="text-xs px-3 py-1 text-primary border-primary/30"
           >
-            Customer Success
+            User Feedback
           </Badge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
-            Proven at Scale by World-Class Teams
+            Loved by Developers and Teams
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            See how engineering and operations leaders rely on Nexus to
-            orchestrate mission-critical operations every second.
+            See how founders, engineers, and product teams build modern web
+            applications faster with our boilerplate.
           </p>
         </div>
 

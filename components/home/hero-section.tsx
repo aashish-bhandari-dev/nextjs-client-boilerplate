@@ -6,7 +6,6 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronRight,
-  Play,
   Sparkles,
   TrendingUp,
   Workflow,
@@ -27,7 +26,7 @@ const trustedCompanies = [
 
 export function HeroSection() {
   const [activeTab, setActiveTab] = React.useState<
-    "overview" | "telemetry" | "automation"
+    "overview" | "analytics" | "activity"
   >("overview");
 
   return (
@@ -49,65 +48,63 @@ export function HeroSection() {
               <Sparkles className="size-2.5" />
               <span>New</span>
             </span>
-            <span>Nexus 2.4 — Autonomous Event Orchestration & Telemetry</span>
+            <span>Modern Client Boilerplate — Next.js 16 & TypeScript</span>
             <ChevronRight className="size-3 text-muted-foreground" />
           </Link>
 
           {/* Impactful Headline */}
           <h1 className="mt-6 max-w-4xl font-extrabold text-4xl tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground">
-            Unify Your Operations.{" "}
+            Build Faster.{" "}
             <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-blue-400 dark:to-indigo-300">
-              Automate Workflows.
+              Launch Confidently.
             </span>
           </h1>
 
           {/* Subtitle / Product Value Proposition */}
           <p className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Nexus unites your data streams, automates multi-step business
-            operations, and delivers real-time operational telemetry in one
-            intelligent workspace. Built for modern engineering, product, and
-            operations teams.
+            A flexible, full-stack ready client application boilerplate with built-in
+            authentication, responsive UI components, and state management. Engineered
+            to kickstart any web application, SaaS, or digital product.
           </p>
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <Link
-              href="#pricing"
+              href="/register"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "w-full sm:w-auto h-11 px-7 text-sm font-semibold shadow-md flex items-center justify-center gap-2"
+                "w-full sm:w-auto h-11 px-7 text-sm font-semibold flex items-center justify-center gap-2"
               )}
             >
-              <span>Start 14-Day Free Trial</span>
+              <span>Get Started Free</span>
               <ArrowRight className="size-4" />
             </Link>
 
             <Link
-              href="#showcase"
+              href="#features"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "w-full sm:w-auto h-11 px-7 text-sm font-semibold flex items-center justify-center gap-2"
               )}
             >
-              <Play className="size-3.5 fill-current" />
-              <span>Interactive Platform Tour</span>
+              <span>Explore Features</span>
             </Link>
           </div>
 
           <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <CheckCircle2 className="size-3.5 text-emerald-500" />
-              No credit card required
+              Full Authentication Flow
             </span>
             <span>&middot;</span>
             <span className="flex items-center gap-1">
               <CheckCircle2 className="size-3.5 text-emerald-500" />
-              SOC 2 Type II Certified
+              TypeScript & Tailwind CSS
             </span>
             <span className="hidden sm:inline">&middot;</span>
             <span className="hidden sm:flex items-center gap-1">
               <CheckCircle2 className="size-3.5 text-emerald-500" />
-              Instant Setup
+              Production Ready
             </span>
           </div>
 
@@ -142,7 +139,7 @@ export function HeroSection() {
                   <div className="size-3 rounded-full bg-emerald-500/80" />
                 </div>
                 <span className="text-xs font-semibold text-foreground ml-2">
-                  Production Workspace &middot; Global Cluster
+                  Application Dashboard &middot; Production
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                   <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -152,7 +149,7 @@ export function HeroSection() {
 
               {/* View Switcher Tabs */}
               <div className="flex items-center gap-1 rounded-lg border border-border bg-muted/40 p-1">
-                {(["overview", "automation", "telemetry"] as const).map(
+                {(["overview", "analytics", "activity"] as const).map(
                   (tab) => (
                     <button
                       key={tab}
@@ -180,17 +177,17 @@ export function HeroSection() {
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-medium text-muted-foreground">
-                        Annual Run Rate
+                        Monthly Active Users
                       </span>
                       <span className="flex items-center text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 gap-0.5">
                         <TrendingUp className="size-3" /> +24.8%
                       </span>
                     </div>
                     <div className="text-2xl font-extrabold text-foreground">
-                      NPR 4,284,500
+                      42,845
                     </div>
                     <p className="text-[11px] text-muted-foreground">
-                      Real-time revenue velocity across all enterprise cohorts.
+                      Total active user accounts across all platform spaces.
                     </p>
                   </CardContent>
                 </Card>
@@ -199,7 +196,7 @@ export function HeroSection() {
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-medium text-muted-foreground">
-                        Automated Operations
+                        API Requests Handled
                       </span>
                       <Badge variant="secondary" className="text-[10px]">
                         99.98% Success
@@ -209,8 +206,7 @@ export function HeroSection() {
                       1.84M / day
                     </div>
                     <p className="text-[11px] text-muted-foreground">
-                      Event triggers processed without manual operator
-                      intervention.
+                      Real-time client requests served with sub-50ms latency.
                     </p>
                   </CardContent>
                 </Card>
@@ -219,21 +215,20 @@ export function HeroSection() {
                   <CardContent className="p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-medium text-muted-foreground">
-                        Active Team Operators
+                        Active Sessions
                       </span>
                       <Badge
                         variant="outline"
                         className="text-[10px] text-primary border-primary/30"
                       >
-                        Multiplayer
+                        Live
                       </Badge>
                     </div>
                     <div className="text-2xl font-extrabold text-foreground">
                       148 Online
                     </div>
                     <p className="text-[11px] text-muted-foreground">
-                      Concurrent engineers and product leads collaborating in
-                      canvas.
+                      Concurrent users browsing and interacting right now.
                     </p>
                   </CardContent>
                 </Card>
@@ -245,55 +240,54 @@ export function HeroSection() {
                   <div className="flex items-center gap-2">
                     <Workflow className="size-4 text-primary" />
                     <span className="text-xs font-semibold text-foreground">
-                      Active Event Pipeline: Payment Completed &rarr; Provision
-                      Workspace &rarr; Notify Slack
+                      Event Pipeline: User Signed Up &rarr; Tokens Issued &rarr; Welcome Email Dispatched
                     </span>
                   </div>
                   <Badge
                     variant="outline"
                     className="text-[10px] text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
                   >
-                    Healthy &middot; Avg 42ms
+                    Healthy &middot; Avg 24ms
                   </Badge>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="rounded-lg border bg-muted/30 p-2.5">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground mb-1">
-                      <span>Trigger 01</span>
+                      <span>Event 01</span>
                       <span className="text-emerald-500">Completed</span>
                     </div>
                     <div className="font-medium text-foreground">
-                      Stripe Invoice Finalized
+                      Account Registered
                     </div>
                     <div className="text-[10px] text-muted-foreground mt-1">
-                      Event ID: evt_98412 &middot; NPR 15,000
+                      User: usr_98412 &middot; Email Verified
                     </div>
                   </div>
 
                   <div className="rounded-lg border bg-muted/30 p-2.5">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground mb-1">
-                      <span>Action 02</span>
+                      <span>Step 02</span>
                       <span className="text-emerald-500">Completed</span>
                     </div>
                     <div className="font-medium text-foreground">
-                      Provision Kubernetes Pod
+                      Session Initialized
                     </div>
                     <div className="text-[10px] text-muted-foreground mt-1">
-                      Cluster: us-east-1 &middot; 3 Nodes Ready
+                      Auth: JWT Cookie &middot; Zustand Stored
                     </div>
                   </div>
 
                   <div className="rounded-lg border bg-muted/30 p-2.5">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground mb-1">
-                      <span>Dispatch 03</span>
-                      <span className="text-emerald-500">Live</span>
+                      <span>Step 03</span>
+                      <span className="text-emerald-500">Delivered</span>
                     </div>
                     <div className="font-medium text-foreground">
-                      Post to #engineering-ops
+                      Welcome Notification
                     </div>
                     <div className="text-[10px] text-muted-foreground mt-1">
-                      Webhook dispatched to Slack & Discord
+                      Dispatched to User Inbox & Bell
                     </div>
                   </div>
                 </div>

@@ -2,29 +2,42 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   ChevronDown,
   Layers,
+  LogOut,
   Menu,
   Sparkles,
+  User as UserIcon,
   X,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { useAuthStore } from "@/store/auth.store";
+import { authRepo } from "@/repo/auth.repo";
+import { toast } from "@/components/ui/toaster";
 
 export function Navbar() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+
+  const { user, isAuthenticated, isHydrated, clearAuth } = useAuthStore();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +46,22 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = async () => {
+    await authRepo.logout();
+    clearAuth();
+    toast.success("Signed out successfully.");
+    router.push("/login");
+  };
+
+  const initials =
+    user?.firstName && user?.lastName
+      ? `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
+      : user?.firstName
+        ? user.firstName.slice(0, 2).toUpperCase()
+        : user?.email
+          ? user.email.slice(0, 2).toUpperCase()
+          : "U";
 
   return (
     <header
@@ -130,29 +159,80 @@ export function Navbar() {
           </nav>
         </div>
 
-        {/* Right: ThemeToggle & CTA Buttons */}
+        {/* Right: ThemeToggle & Auth/CTA Area */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           {/* Dark / Light Theme Toggle */}
           <ThemeToggle />
 
-          {/* CTA Buttons */}
+          {/* Desktop Auth Section */}
           <div className="hidden sm:flex items-center gap-2">
-            <Link
-              href="#pricing"
-              className={buttonVariants({ variant: "ghost", size: "sm" })}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="#pricing"
-              className={cn(
-                buttonVariants({ size: "sm" }),
-                "flex items-center gap-1.5 whitespace-nowrap"
-              )}
-            >
-              <span>Start Free Trial</span>
-              <ArrowRight className="size-3.5" />
-            </Link>
+            {isHydrated && isAuthenticated && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-2 rounded-full border border-border/70 p-1 pr-3 hover:bg-muted/50 transition-colors cursor-pointer select-none">
+                  <Avatar size="sm" className="size-7 border border-primary/20">
+                    <AvatarImage src={user.image || undefined} alt={user.fullName || user.firstName} />
+                    <AvatarFallback className="text-[11px] font-bold bg-primary/10 text-primary">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="text-xs font-semibold max-w-[120px] truncate text-foreground">
+                    {user.firstName || user.username || "Account"}
+                  </span>
+                  <ChevronDown className="size-3 text-muted-foreground" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" sideOffset={8} className="w-56 p-1.5 rounded-xl shadow-lg">
+                  <DropdownMenuLabel className="px-2.5 py-2">
+                    <div className="flex flex-col space-y-0.5">
+                      <p className="text-xs font-semibold text-foreground truncate">
+                        {user.fullName || user.firstName}
+                      </p>
+                      <p className="text-[11px] text-muted-foreground truncate font-normal">
+                        {user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem className="p-0">
+                      <Link
+                        href="/profile"
+                        className="flex w-full items-center gap-2 px-2.5 py-1.5 text-xs text-foreground hover:bg-muted rounded-md transition-colors"
+                      >
+                        <UserIcon className="size-3.5 text-muted-foreground" />
+                        <span>Profile & Settings</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 px-2.5 py-1.5 text-xs text-destructive hover:bg-destructive/10 rounded-md transition-colors cursor-pointer"
+                  >
+                    <LogOut className="size-3.5" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className={buttonVariants({ variant: "ghost", size: "sm" })}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className={cn(
+                    buttonVariants({ size: "sm" }),
+                    "flex items-center gap-1.5 whitespace-nowrap shadow-xs"
+                  )}
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="size-3.5" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -208,23 +288,52 @@ export function Navbar() {
             ))}
 
             <div className="pt-4 border-t border-border flex flex-col gap-2">
-              <Link
-                href="#pricing"
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "w-full justify-center"
-                )}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="#pricing"
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(buttonVariants(), "w-full justify-center")}
-              >
-                Get Started Free
-              </Link>
+              {isHydrated && isAuthenticated && user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "w-full justify-start gap-2 text-xs"
+                    )}
+                  >
+                    <UserIcon className="size-3.5" />
+                    <span>Signed in as {user.firstName || user.email}</span>
+                  </Link>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full justify-center gap-2 text-destructive hover:bg-destructive/10 hover:text-destructive border-destructive/30"
+                  >
+                    <LogOut className="size-3.5" />
+                    <span>Sign Out</span>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "w-full justify-center"
+                    )}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(buttonVariants(), "w-full justify-center")}
+                  >
+                    Get Started Free
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </div>
