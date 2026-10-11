@@ -180,7 +180,9 @@ export function ComponentShowcaseSection() {
                 <Checkbox
                   id="demo-checkbox"
                   checked={confirmDestructive}
-                  onCheckedChange={(checked) => setConfirmDestructive(!!checked)}
+                  onCheckedChange={(checked) =>
+                    setConfirmDestructive(!!checked)
+                  }
                 />
                 <Label
                   htmlFor="demo-checkbox"

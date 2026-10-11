@@ -1,4 +1,4 @@
-import { BaseApiResponse, BasePaginatedResponse } from './base.types';
+import { BaseApiResponse, BasePaginatedResponse } from "./base.types";
 
 export interface User {
   id: string;

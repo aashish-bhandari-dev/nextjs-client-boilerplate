@@ -51,8 +51,8 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Join 35,000+ developers and digital product builders receiving
-              our weekly updates on web development, modern architecture, and
+              Join 35,000+ developers and digital product builders receiving our
+              weekly updates on web development, modern architecture, and
               component libraries.
             </p>
           </div>
@@ -103,7 +103,8 @@ export function Footer() {
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed">
               A comprehensive client application boilerplate built with Next.js,
-              TypeScript, Zustand, and Tailwind CSS to jumpstart your next web project.
+              TypeScript, Zustand, and Tailwind CSS to jumpstart your next web
+              project.
             </p>
 
             {/* Operational Status Badge */}

@@ -58,7 +58,8 @@ export function RegisterForm() {
 
     if (!parseResult.success) {
       const msg =
-        parseResult.error.issues[0]?.message || "Please check your registration details.";
+        parseResult.error.issues[0]?.message ||
+        "Please check your registration details.";
       setErrorMessage(msg);
       toast.error(msg);
       return;
@@ -81,16 +82,20 @@ export function RegisterForm() {
         // Check if user needs email verification
         if (data.requiresVerification?.email || !data.tokens?.accessToken) {
           toast.success(
-            "Account created! Please check your email for the verification code.",
+            "Account created! Please check your email for the verification code."
           );
           if (data.otp) {
             toast.info(`Development OTP: ${data.otp}`, { duration: 10000 });
           }
-          router.push(`/verify-email?email=${encodeURIComponent(email.trim().toLowerCase())}`);
+          router.push(
+            `/verify-email?email=${encodeURIComponent(email.trim().toLowerCase())}`
+          );
         } else {
           // Direct login if tokens are provided
           setAuth(data, true);
-          toast.success(`Welcome, ${data.user.firstName}! Your account is ready.`);
+          toast.success(
+            `Welcome, ${data.user.firstName}! Your account is ready.`
+          );
           router.push("/");
           router.refresh();
         }

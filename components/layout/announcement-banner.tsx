@@ -33,7 +33,7 @@ export function AnnouncementBanner() {
   const isVisible = React.useSyncExternalStore(
     subscribe,
     getSnapshot,
-    getServerSnapshot,
+    getServerSnapshot
   );
 
   const handleDismiss = () => {
@@ -59,7 +59,8 @@ export function AnnouncementBanner() {
         </span>
 
         <span className="text-foreground">
-          Version 2.0 is now live: Explore our modular components and complete authentication flow.
+          Version 2.0 is now live: Explore our modular components and complete
+          authentication flow.
         </span>
 
         <Link

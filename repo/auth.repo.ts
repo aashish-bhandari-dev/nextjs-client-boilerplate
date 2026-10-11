@@ -10,11 +10,11 @@ import {
   ResetPasswordResponse,
   VerifyEmailOtpInput,
   VerifyOtpResponse,
-} from '@/types/auth.types';
-import { BaseApiResponse } from '@/types/base.types';
-import { User } from '@/types/user.types';
-import { serverApi } from '@/lib/api/server-api';
-import { handleApiError } from '@/lib/utils';
+} from "@/types/auth.types";
+import { BaseApiResponse } from "@/types/base.types";
+import { User } from "@/types/user.types";
+import { serverApi } from "@/lib/api/server-api";
+import { handleApiError } from "@/lib/utils";
 
 class AuthRepo {
   /**
@@ -31,26 +31,32 @@ class AuthRepo {
   }): Promise<AuthResponseData | undefined> {
     try {
       const response = await serverApi.post<LoginResponse | AuthResponseData>(
-        '/auth/login',
+        "/auth/login",
         {
           identifier: credentials.identifier,
           password: credentials.password,
-        },
+        }
       );
 
-      const authData: AuthResponseData =
-        (response as BaseApiResponse<AuthResponseData>)?.data?.user
-          ? (response as BaseApiResponse<AuthResponseData>).data
-          : (response as AuthResponseData);
+      const authData: AuthResponseData = (
+        response as BaseApiResponse<AuthResponseData>
+      )?.data?.user
+        ? (response as BaseApiResponse<AuthResponseData>).data
+        : (response as AuthResponseData);
 
       if (!authData?.user) {
-        throw new Error('Invalid authentication response structure received from server.');
+        throw new Error(
+          "Invalid authentication response structure received from server."
+        );
       }
 
       onSuccess(authData);
       return authData;
     } catch (error) {
-      const message = handleApiError(error, 'Login failed. Please check your credentials.');
+      const message = handleApiError(
+        error,
+        "Login failed. Please check your credentials."
+      );
       onError(message);
       return undefined;
     }
@@ -85,24 +91,29 @@ class AuthRepo {
         payload.phone = data.phone.trim();
       }
 
-      const response = await serverApi.post<RegisterResponse | AuthResponseData>(
-        '/auth/register',
-        payload,
-      );
+      const response = await serverApi.post<
+        RegisterResponse | AuthResponseData
+      >("/auth/register", payload);
 
-      const authData: AuthResponseData =
-        (response as BaseApiResponse<AuthResponseData>)?.data?.user
-          ? (response as BaseApiResponse<AuthResponseData>).data
-          : (response as AuthResponseData);
+      const authData: AuthResponseData = (
+        response as BaseApiResponse<AuthResponseData>
+      )?.data?.user
+        ? (response as BaseApiResponse<AuthResponseData>).data
+        : (response as AuthResponseData);
 
       if (!authData?.user) {
-        throw new Error('Invalid registration response structure received from server.');
+        throw new Error(
+          "Invalid registration response structure received from server."
+        );
       }
 
       onSuccess(authData);
       return authData;
     } catch (error) {
-      const message = handleApiError(error, 'Registration failed. Please check your details.');
+      const message = handleApiError(
+        error,
+        "Registration failed. Please check your details."
+      );
       onError(message);
       return undefined;
     }
@@ -122,18 +133,23 @@ class AuthRepo {
   }): Promise<boolean> {
     try {
       const response = await serverApi.post<ForgotPasswordResponse>(
-        '/auth/forgot-password',
+        "/auth/forgot-password",
         {
           email: data.email.trim().toLowerCase(),
-        },
+        }
       );
 
-      const msg = response?.message || 'Password reset instructions have been sent to your email.';
+      const msg =
+        response?.message ||
+        "Password reset instructions have been sent to your email.";
       const otp = response?.data?.otp;
       onSuccess(msg, otp);
       return true;
     } catch (error) {
-      const message = handleApiError(error, 'Failed to process forgot password request.');
+      const message = handleApiError(
+        error,
+        "Failed to process forgot password request."
+      );
       onError(message);
       return false;
     }
@@ -153,19 +169,24 @@ class AuthRepo {
   }): Promise<boolean> {
     try {
       const response = await serverApi.post<ResetPasswordResponse>(
-        '/auth/reset-password',
+        "/auth/reset-password",
         {
           email: data.email.trim().toLowerCase(),
           tokenOrOtp: data.tokenOrOtp.trim(),
           newPassword: data.newPassword,
-        },
+        }
       );
 
-      const msg = response?.message || 'Password reset successfully. You can now log in with your new password.';
+      const msg =
+        response?.message ||
+        "Password reset successfully. You can now log in with your new password.";
       onSuccess(msg);
       return true;
     } catch (error) {
-      const message = handleApiError(error, 'Failed to reset password. Please verify your OTP code or token.');
+      const message = handleApiError(
+        error,
+        "Failed to reset password. Please verify your OTP code or token."
+      );
       onError(message);
       return false;
     }
@@ -185,24 +206,27 @@ class AuthRepo {
   }): Promise<User | undefined> {
     try {
       const response = await serverApi.post<VerifyOtpResponse>(
-        '/auth/verify-email-otp',
+        "/auth/verify-email-otp",
         {
           email: data.email.trim().toLowerCase(),
           otp: data.otp.trim(),
-        },
+        }
       );
 
       const verifiedUser =
         response?.data?.user || (response as unknown as { user: User })?.user;
 
       if (!verifiedUser) {
-        throw new Error('Failed to retrieve verified user details.');
+        throw new Error("Failed to retrieve verified user details.");
       }
 
       onSuccess(verifiedUser);
       return verifiedUser;
     } catch (error) {
-      const message = handleApiError(error, 'Failed to verify email OTP. Please check the code.');
+      const message = handleApiError(
+        error,
+        "Failed to verify email OTP. Please check the code."
+      );
       onError(message);
       return undefined;
     }
@@ -221,19 +245,23 @@ class AuthRepo {
     onError: (message: string) => void;
   }): Promise<boolean> {
     try {
-      const response = await serverApi.post<BaseApiResponse<{ message: string; otp?: string }>>(
-        '/auth/send-email-otp',
-        {
-          email: email.trim().toLowerCase(),
-        },
-      );
+      const response = await serverApi.post<
+        BaseApiResponse<{ message: string; otp?: string }>
+      >("/auth/send-email-otp", {
+        email: email.trim().toLowerCase(),
+      });
 
-      const msg = response?.message || 'Verification OTP code sent to your email address.';
+      const msg =
+        response?.message ||
+        "Verification OTP code sent to your email address.";
       const otp = response?.data?.otp;
       onSuccess(msg, otp);
       return true;
     } catch (error) {
-      const message = handleApiError(error, 'Failed to resend verification OTP.');
+      const message = handleApiError(
+        error,
+        "Failed to resend verification OTP."
+      );
       onError(message);
       return false;
     }
@@ -250,20 +278,21 @@ class AuthRepo {
     onError?: (message: string) => void;
   }): Promise<User | undefined> {
     try {
-      const response = await serverApi.get<BaseApiResponse<User> | User>('/auth/me');
-      const user =
-        (response as BaseApiResponse<User>)?.data?.id
-          ? (response as BaseApiResponse<User>).data
-          : (response as User);
+      const response = await serverApi.get<BaseApiResponse<User> | User>(
+        "/auth/me"
+      );
+      const user = (response as BaseApiResponse<User>)?.data?.id
+        ? (response as BaseApiResponse<User>).data
+        : (response as User);
 
       if (!user?.id) {
-        throw new Error('Invalid user profile response.');
+        throw new Error("Invalid user profile response.");
       }
 
       onSuccess(user);
       return user;
     } catch (error) {
-      const message = handleApiError(error, 'Failed to load user profile.');
+      const message = handleApiError(error, "Failed to load user profile.");
       onError?.(message);
       return undefined;
     }
@@ -280,10 +309,10 @@ class AuthRepo {
     onError?: (message: string) => void;
   } = {}): Promise<void> {
     try {
-      await serverApi.post('/auth/logout');
+      await serverApi.post("/auth/logout");
       onSuccess?.();
     } catch (error) {
-      const message = handleApiError(error, 'Logout error');
+      const message = handleApiError(error, "Logout error");
       onError?.(message);
     }
   }

@@ -24,13 +24,17 @@ export interface BaseApiResponse<T = unknown> {
   data: T;
   timestamp?: string;
   statusCode?: number;
-  errors?: Record<string, string[]> | Array<{ code?: string; message?: string; [key: string]: unknown }>;
+  errors?:
+    | Record<string, string[]>
+    | Array<{ code?: string; message?: string; [key: string]: unknown }>;
 }
 
 /**
  * Standard API envelope for paginated list responses.
  */
-export interface BasePaginatedResponse<T = unknown> extends BaseApiResponse<T[]> {
+export interface BasePaginatedResponse<T = unknown> extends BaseApiResponse<
+  T[]
+> {
   meta: PaginationMeta;
 }
 
@@ -41,7 +45,9 @@ export interface ApiErrorResponse {
   success: false;
   message: string;
   statusCode?: number;
-  errors?: Record<string, string[]> | Array<{ code?: string; message?: string; [key: string]: unknown }>;
+  errors?:
+    | Record<string, string[]>
+    | Array<{ code?: string; message?: string; [key: string]: unknown }>;
   timestamp?: string;
 }
 

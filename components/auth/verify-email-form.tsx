@@ -48,7 +48,8 @@ export function VerifyEmailForm() {
     const parseResult = verifyEmailOtpFormSchema.safeParse({ email, otp });
     if (!parseResult.success) {
       const msg =
-        parseResult.error.issues[0]?.message || "Please enter a valid 6-digit OTP code.";
+        parseResult.error.issues[0]?.message ||
+        "Please enter a valid 6-digit OTP code.";
       setErrorMessage(msg);
       toast.error(msg);
       return;
@@ -65,7 +66,9 @@ export function VerifyEmailForm() {
         setIsLoading(false);
         setUser(verifiedUser);
         toast.success("Email verified successfully! You can now log in.");
-        router.push(`/login?email=${encodeURIComponent(email.trim().toLowerCase())}`);
+        router.push(
+          `/login?email=${encodeURIComponent(email.trim().toLowerCase())}`
+        );
       },
       onError: (message) => {
         setIsLoading(false);
@@ -109,7 +112,8 @@ export function VerifyEmailForm() {
           Verify your email
         </h2>
         <p className="text-muted-foreground text-sm">
-          We&apos;ve sent a 6-digit confirmation code to your email address. Enter it below to activate your account.
+          We&apos;ve sent a 6-digit confirmation code to your email address.
+          Enter it below to activate your account.
         </p>
       </div>
 

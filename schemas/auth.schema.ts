@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * Login Form Validation Schema
@@ -7,10 +7,8 @@ export const loginFormSchema = z.object({
   identifier: z
     .string()
     .trim()
-    .min(1, 'Email, username, or phone number is required'),
-  password: z
-    .string()
-    .min(1, 'Password is required'),
+    .min(1, "Email, username, or phone number is required"),
+  password: z.string().min(1, "Password is required"),
   rememberMe: z.boolean().optional(),
 });
 
@@ -23,50 +21,33 @@ export type LoginInput = z.infer<typeof loginFormSchema>;
  */
 export const registerFormSchema = z
   .object({
-    firstName: z
-      .string()
-      .trim()
-      .min(1, 'First name is required'),
-    lastName: z
-      .string()
-      .trim()
-      .optional()
-      .or(z.literal('')),
+    firstName: z.string().trim().min(1, "First name is required"),
+    lastName: z.string().trim().optional().or(z.literal("")),
     username: z
       .string()
       .trim()
-      .min(3, 'Username must be at least 3 characters')
+      .min(3, "Username must be at least 3 characters")
       .regex(
         /^[a-zA-Z0-9_.-]+$/,
-        'Username can only contain letters, numbers, dots, and underscores',
+        "Username can only contain letters, numbers, dots, and underscores"
       )
       .optional()
-      .or(z.literal('')),
+      .or(z.literal("")),
     email: z
       .string()
       .trim()
-      .min(1, 'Email address is required')
-      .email('Invalid email address'),
-    password: z
-      .string()
-      .min(6, 'Password must be at least 6 characters'),
-    confirmPassword: z
-      .string()
-      .min(1, 'Please confirm your password'),
-    phone: z
-      .string()
-      .trim()
-      .optional()
-      .or(z.literal('')),
-    terms: z
-      .boolean()
-      .refine((val) => val === true, {
-        message: 'You must agree to the Terms of Service and Privacy Policy',
-      }),
+      .min(1, "Email address is required")
+      .email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
+    phone: z.string().trim().optional().or(z.literal("")),
+    terms: z.boolean().refine((val) => val === true, {
+      message: "You must agree to the Terms of Service and Privacy Policy",
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 export const registerSchema = registerFormSchema;
@@ -79,8 +60,8 @@ export const forgotPasswordFormSchema = z.object({
   email: z
     .string()
     .trim()
-    .min(1, 'Email address is required')
-    .email('Invalid email address'),
+    .min(1, "Email address is required")
+    .email("Invalid email address"),
 });
 
 export const forgotPasswordSchema = forgotPasswordFormSchema;
@@ -94,22 +75,17 @@ export const resetPasswordFormSchema = z
     email: z
       .string()
       .trim()
-      .min(1, 'Email address is required')
-      .email('Invalid email address'),
-    tokenOrOtp: z
-      .string()
-      .trim()
-      .min(1, 'Reset code or token is required'),
+      .min(1, "Email address is required")
+      .email("Invalid email address"),
+    tokenOrOtp: z.string().trim().min(1, "Reset code or token is required"),
     newPassword: z
       .string()
-      .min(6, 'New password must be at least 6 characters'),
-    confirmPassword: z
-      .string()
-      .min(1, 'Please confirm your new password'),
+      .min(6, "New password must be at least 6 characters"),
+    confirmPassword: z.string().min(1, "Please confirm your new password"),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 export const resetPasswordSchema = resetPasswordFormSchema;
@@ -122,13 +98,13 @@ export const verifyEmailOtpFormSchema = z.object({
   email: z
     .string()
     .trim()
-    .min(1, 'Email address is required')
-    .email('Invalid email address'),
+    .min(1, "Email address is required")
+    .email("Invalid email address"),
   otp: z
     .string()
     .trim()
-    .length(6, 'OTP code must be exactly 6 digits')
-    .regex(/^[0-9]+$/, 'OTP code must contain only numbers'),
+    .length(6, "OTP code must be exactly 6 digits")
+    .regex(/^[0-9]+$/, "OTP code must contain only numbers"),
 });
 
 export const verifyEmailOtpSchema = verifyEmailOtpFormSchema;
@@ -139,19 +115,15 @@ export type VerifyEmailOtpFormValues = z.infer<typeof verifyEmailOtpFormSchema>;
  */
 export const changePasswordFormSchema = z
   .object({
-    currentPassword: z
-      .string()
-      .min(1, 'Current password is required'),
+    currentPassword: z.string().min(1, "Current password is required"),
     newPassword: z
       .string()
-      .min(6, 'New password must be at least 6 characters'),
-    confirmPassword: z
-      .string()
-      .min(1, 'Please confirm your new password'),
+      .min(6, "New password must be at least 6 characters"),
+    confirmPassword: z.string().min(1, "Please confirm your new password"),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 export const changePasswordSchema = changePasswordFormSchema;

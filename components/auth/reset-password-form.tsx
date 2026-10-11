@@ -67,7 +67,9 @@ export function ResetPasswordForm() {
       onSuccess: (message) => {
         setIsLoading(false);
         toast.success(message);
-        router.push(`/login?email=${encodeURIComponent(email.trim().toLowerCase())}`);
+        router.push(
+          `/login?email=${encodeURIComponent(email.trim().toLowerCase())}`
+        );
       },
       onError: (message) => {
         setIsLoading(false);
@@ -88,7 +90,8 @@ export function ResetPasswordForm() {
           Reset your password
         </h2>
         <p className="text-muted-foreground text-sm">
-          Enter the reset code sent to your email and choose a strong new password.
+          Enter the reset code sent to your email and choose a strong new
+          password.
         </p>
       </div>
 

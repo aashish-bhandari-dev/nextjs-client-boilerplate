@@ -27,9 +27,7 @@ export function AuthCardLayout({ children }: AuthCardLayoutProps) {
 
             {/* Right Column: Clean Form Container */}
             <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-              <div className="w-full max-w-md mx-auto">
-                {children}
-              </div>
+              <div className="w-full max-w-md mx-auto">{children}</div>
             </div>
           </div>
         </div>

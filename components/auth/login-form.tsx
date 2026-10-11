@@ -47,7 +47,8 @@ export function LoginForm() {
 
     if (!parseResult.success) {
       const msg =
-        parseResult.error.issues[0]?.message || "Please enter valid credentials.";
+        parseResult.error.issues[0]?.message ||
+        "Please enter valid credentials.";
       setErrorMessage(msg);
       toast.error(msg);
       return;
@@ -71,9 +72,14 @@ export function LoginForm() {
         setIsLoading(false);
 
         // If email is not verified, suggest verification page
-        if (message.toLowerCase().includes("verify") || message.toLowerCase().includes("not verified")) {
+        if (
+          message.toLowerCase().includes("verify") ||
+          message.toLowerCase().includes("not verified")
+        ) {
           setTimeout(() => {
-            router.push(`/verify-email?email=${encodeURIComponent(trimmedIdentifier)}`);
+            router.push(
+              `/verify-email?email=${encodeURIComponent(trimmedIdentifier)}`
+            );
           }, 1500);
         }
       },

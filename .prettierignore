@@ -1,0 +1,31 @@
+# Dependencies & build outputs
+node_modules
+.next
+out
+build
+dist
+coverage
+
+# Package manager lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+.pnp
+.pnp.*
+.yarn
+
+# TypeScript artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# Public media and static files
+public/
+app/tw-animate.css
+
+# Environment files
+.env*.local
+
+# System & IDE files
+.DS_Store
+.idea
+.vscode

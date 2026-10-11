@@ -5,7 +5,7 @@ export { cn } from "cn";
  */
 export function handleApiError(
   error: unknown,
-  fallbackMessage = "An unexpected error occurred",
+  fallbackMessage = "An unexpected error occurred"
 ): string {
   if (!error) return fallbackMessage;
 
@@ -18,7 +18,8 @@ export function handleApiError(
     const response = err.response as Record<string, unknown> | undefined;
     const status = response?.status as number | undefined;
     if (status === 429) {
-      const responseData = response?.data as Record<string, unknown> | undefined;
+      const responseData = response?.data as
+        Record<string, unknown> | undefined;
       const rateLimitMsg =
         responseData?.message ||
         responseData?.error ||
@@ -36,7 +37,8 @@ export function handleApiError(
     }
 
     // Backend ApiError with error.message
-    const nestedError = responseData?.error as Record<string, unknown> | undefined;
+    const nestedError = responseData?.error as
+      Record<string, unknown> | undefined;
     if (nestedError?.message) {
       return String(nestedError.message);
     }

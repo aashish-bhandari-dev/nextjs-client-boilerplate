@@ -63,8 +63,8 @@ export function FaqSection() {
             Frequently Asked Questions
           </h2>
           <p className="mt-4 max-w-xl text-base text-muted-foreground">
-            Everything you need to know about setting up, customizing, and scaling
-            your web application.
+            Everything you need to know about setting up, customizing, and
+            scaling your web application.
           </p>
         </div>
 

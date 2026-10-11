@@ -1,5 +1,5 @@
-import { BaseApiResponse } from './base.types';
-import { User } from './user.types';
+import { BaseApiResponse } from "./base.types";
+import { User } from "./user.types";
 
 export interface LoginInput {
   identifier: string;
@@ -62,5 +62,8 @@ export interface AuthResponseData {
 export type LoginResponse = BaseApiResponse<AuthResponseData>;
 export type RegisterResponse = BaseApiResponse<AuthResponseData>;
 export type VerifyOtpResponse = BaseApiResponse<{ user: User }>;
-export type ForgotPasswordResponse = BaseApiResponse<{ message: string; otp?: string }>;
+export type ForgotPasswordResponse = BaseApiResponse<{
+  message: string;
+  otp?: string;
+}>;
 export type ResetPasswordResponse = BaseApiResponse<unknown>;

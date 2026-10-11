@@ -1,6 +1,6 @@
-export * from './base.types';
-export * from './user.types';
-export * from './auth.types';
+export * from "./base.types";
+export * from "./user.types";
+export * from "./auth.types";
 
 import { type LucideIcon } from "lucide-react";
 

@@ -1,10 +1,4 @@
-import {
-  CheckCircle2,
-  Code2,
-  Layers,
-  Sparkles,
-  Zap,
-} from "lucide-react";
+import { CheckCircle2, Code2, Layers, Sparkles, Zap } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 const highlights = [
@@ -31,8 +25,8 @@ export function AuthShowcase() {
           Build faster and launch your project with confidence.
         </h2>
         <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-          A flexible, modern application boilerplate engineered with clean code, modular architecture,
-          and essential features built in.
+          A flexible, modern application boilerplate engineered with clean code,
+          modular architecture, and essential features built in.
         </p>
 
         {/* Feature Highlights */}
@@ -61,8 +55,8 @@ export function AuthShowcase() {
             </div>
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
-            Easily adapt this boilerplate for SaaS platforms, client portals, internal tools,
-            or public-facing applications.
+            Easily adapt this boilerplate for SaaS platforms, client portals,
+            internal tools, or public-facing applications.
           </p>
         </div>
       </div>

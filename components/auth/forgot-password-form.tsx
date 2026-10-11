@@ -36,7 +36,8 @@ export function ForgotPasswordForm() {
 
     const parseResult = forgotPasswordFormSchema.safeParse({ email });
     if (!parseResult.success) {
-      const msg = parseResult.error.issues[0]?.message || "Invalid email address.";
+      const msg =
+        parseResult.error.issues[0]?.message || "Invalid email address.";
       setErrorMessage(msg);
       toast.error(msg);
       return;
@@ -70,7 +71,8 @@ export function ForgotPasswordForm() {
           Forgot your password?
         </h2>
         <p className="text-muted-foreground text-sm">
-          No worries. Enter your registered email address and we will send you instructions and a reset code.
+          No worries. Enter your registered email address and we will send you
+          instructions and a reset code.
         </p>
       </div>
 
@@ -95,7 +97,9 @@ export function ForgotPasswordForm() {
               {successInfo.otp && (
                 <div className="mt-2 rounded-md bg-background/80 border p-2 text-xs font-mono">
                   <span className="text-muted-foreground">Dev Code: </span>
-                  <span className="font-bold text-primary">{successInfo.otp}</span>
+                  <span className="font-bold text-primary">
+                    {successInfo.otp}
+                  </span>
                 </div>
               )}
             </div>
@@ -106,8 +110,10 @@ export function ForgotPasswordForm() {
             onClick={() =>
               router.push(
                 `/reset-password?email=${encodeURIComponent(email.trim().toLowerCase())}${
-                  successInfo.otp ? `&code=${encodeURIComponent(successInfo.otp)}` : ""
-                }`,
+                  successInfo.otp
+                    ? `&code=${encodeURIComponent(successInfo.otp)}`
+                    : ""
+                }`
               )
             }
             className="w-full text-sm font-semibold h-10"

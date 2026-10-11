@@ -17,7 +17,7 @@ const steps = [
     title: "Authenticate Users",
     description:
       "Ready-to-use registration, login, email OTP verification, and JWT session handling via Zustand.",
-    code: '// Complete auth hooks & repo\nawait authRepo.login({\n  credentials: { identifier, password },\n  onSuccess: (data) => setAuth(data)\n});',
+    code: "// Complete auth hooks & repo\nawait authRepo.login({\n  credentials: { identifier, password },\n  onSuccess: (data) => setAuth(data)\n});",
     icon: UserCheck,
   },
   {
@@ -25,7 +25,7 @@ const steps = [
     title: "Build Your Features",
     description:
       "Assemble user interfaces quickly using our modular Tailwind CSS components and state stores.",
-    code: '// Modular UI & Store\nconst { user } = useAuthStore();\nreturn <DashboardView user={user} />;',
+    code: "// Modular UI & Store\nconst { user } = useAuthStore();\nreturn <DashboardView user={user} />;",
     icon: Layers,
   },
   {
@@ -33,7 +33,7 @@ const steps = [
     title: "Deploy to Production",
     description:
       "Deploy anywhere with confidence using Next.js App Router, Docker support, and optimized assets.",
-    code: '// Production build & start\nnpm run build\nnpm run start',
+    code: "// Production build & start\nnpm run build\nnpm run start",
     icon: Globe,
   },
 ];
@@ -56,8 +56,9 @@ export function HowItWorksSection() {
             From Setup to Production in Minutes
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            A clean, developer-friendly workflow engineered to get your application
-            from initial setup to production deployment without friction.
+            A clean, developer-friendly workflow engineered to get your
+            application from initial setup to production deployment without
+            friction.
           </p>
         </div>
 

@@ -62,9 +62,10 @@ export function HeroSection() {
 
           {/* Subtitle / Product Value Proposition */}
           <p className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-            A flexible, full-stack ready client application boilerplate with built-in
-            authentication, responsive UI components, and state management. Engineered
-            to kickstart any web application, SaaS, or digital product.
+            A flexible, full-stack ready client application boilerplate with
+            built-in authentication, responsive UI components, and state
+            management. Engineered to kickstart any web application, SaaS, or
+            digital product.
           </p>
 
           {/* CTA Buttons */}
@@ -149,23 +150,21 @@ export function HeroSection() {
 
               {/* View Switcher Tabs */}
               <div className="flex items-center gap-1 rounded-lg border border-border bg-muted/40 p-1">
-                {(["overview", "analytics", "activity"] as const).map(
-                  (tab) => (
-                    <button
-                      key={tab}
-                      type="button"
-                      onClick={() => setActiveTab(tab)}
-                      className={cn(
-                        "px-2.5 py-1 text-[11px] font-medium rounded-md capitalize transition-colors cursor-pointer",
-                        activeTab === tab
-                          ? "bg-background text-foreground shadow-xs font-semibold"
-                          : "text-muted-foreground hover:text-foreground"
-                      )}
-                    >
-                      {tab}
-                    </button>
-                  )
-                )}
+                {(["overview", "analytics", "activity"] as const).map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={cn(
+                      "px-2.5 py-1 text-[11px] font-medium rounded-md capitalize transition-colors cursor-pointer",
+                      activeTab === tab
+                        ? "bg-background text-foreground shadow-xs font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {tab}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -240,7 +239,8 @@ export function HeroSection() {
                   <div className="flex items-center gap-2">
                     <Workflow className="size-4 text-primary" />
                     <span className="text-xs font-semibold text-foreground">
-                      Event Pipeline: User Signed Up &rarr; Tokens Issued &rarr; Welcome Email Dispatched
+                      Event Pipeline: User Signed Up &rarr; Tokens Issued &rarr;
+                      Welcome Email Dispatched
                     </span>
                   </div>
                   <Badge

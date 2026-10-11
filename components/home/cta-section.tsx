@@ -23,8 +23,9 @@ export function CtaSection() {
             </h2>
 
             <p className="mt-4 max-w-xl text-base text-muted-foreground leading-relaxed">
-              Start building your product with a battle-tested architecture, full authentication flow,
-              and customizable UI components ready out of the box.
+              Start building your product with a battle-tested architecture,
+              full authentication flow, and customizable UI components ready out
+              of the box.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">

@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import Cookies from 'js-cookie';
-import { AuthResponseData, AuthTokens } from '@/types/auth.types';
-import { User } from '@/types/user.types';
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import Cookies from "js-cookie";
+import { AuthResponseData, AuthTokens } from "@/types/auth.types";
+import { User } from "@/types/user.types";
 
 interface AuthState {
   user: User | null;
@@ -20,9 +20,9 @@ interface AuthState {
 }
 
 const COOKIE_OPTIONS = {
-  path: '/',
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax' as const,
+  path: "/",
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax" as const,
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -46,13 +46,13 @@ export const useAuthStore = create<AuthState>()(
 
         // Synchronize cookies for proxy / server / client authentication
         if (tokens?.accessToken) {
-          Cookies.set('access_token', tokens.accessToken, cookieOpts);
+          Cookies.set("access_token", tokens.accessToken, cookieOpts);
         }
         if (tokens?.refreshToken) {
-          Cookies.set('refresh_token', tokens.refreshToken, cookieOpts);
+          Cookies.set("refresh_token", tokens.refreshToken, cookieOpts);
         }
         if (user?.role) {
-          Cookies.set('user_role', user.role, cookieOpts);
+          Cookies.set("user_role", user.role, cookieOpts);
         }
 
         set({
@@ -64,9 +64,9 @@ export const useAuthStore = create<AuthState>()(
 
       clearAuth: () => {
         // Clear all session cookies
-        Cookies.remove('access_token', COOKIE_OPTIONS);
-        Cookies.remove('refresh_token', COOKIE_OPTIONS);
-        Cookies.remove('user_role', COOKIE_OPTIONS);
+        Cookies.remove("access_token", COOKIE_OPTIONS);
+        Cookies.remove("refresh_token", COOKIE_OPTIONS);
+        Cookies.remove("user_role", COOKIE_OPTIONS);
 
         // Reset store state
         set({
@@ -80,9 +80,9 @@ export const useAuthStore = create<AuthState>()(
         const isAuth = !!user;
         set({ user, isAuthenticated: isAuth });
         if (user?.role) {
-          Cookies.set('user_role', user.role, COOKIE_OPTIONS);
+          Cookies.set("user_role", user.role, COOKIE_OPTIONS);
         } else {
-          Cookies.remove('user_role', COOKIE_OPTIONS);
+          Cookies.remove("user_role", COOKIE_OPTIONS);
         }
       },
 
@@ -91,7 +91,7 @@ export const useAuthStore = create<AuthState>()(
           if (!state.user) return state;
           const updated = { ...state.user, ...partialUser };
           if (updated.role) {
-            Cookies.set('user_role', updated.role, COOKIE_OPTIONS);
+            Cookies.set("user_role", updated.role, COOKIE_OPTIONS);
           }
           return { user: updated };
         });
@@ -104,19 +104,19 @@ export const useAuthStore = create<AuthState>()(
 
         set({ tokens });
         if (tokens?.accessToken) {
-          Cookies.set('access_token', tokens.accessToken, cookieOpts);
+          Cookies.set("access_token", tokens.accessToken, cookieOpts);
         } else {
-          Cookies.remove('access_token', COOKIE_OPTIONS);
+          Cookies.remove("access_token", COOKIE_OPTIONS);
         }
         if (tokens?.refreshToken) {
-          Cookies.set('refresh_token', tokens.refreshToken, cookieOpts);
+          Cookies.set("refresh_token", tokens.refreshToken, cookieOpts);
         } else {
-          Cookies.remove('refresh_token', COOKIE_OPTIONS);
+          Cookies.remove("refresh_token", COOKIE_OPTIONS);
         }
       },
     }),
     {
-      name: 'client-auth-storage',
+      name: "client-auth-storage",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         user: state.user,
@@ -126,6 +126,6 @@ export const useAuthStore = create<AuthState>()(
       onRehydrateStorage: () => (state) => {
         state?.setHydrated(true);
       },
-    },
-  ),
+    }
+  )
 );

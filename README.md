@@ -184,6 +184,38 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
+### Docker Setup
+
+#### 1. Production Mode with Docker Compose (Standalone)
+
+```bash
+# Build and run the optimized production container
+docker compose up -d --build
+
+# View logs
+docker compose logs -f
+
+# Stop container
+docker compose down
+```
+
+#### 2. Development Mode with Docker Compose (Hot Reloading)
+
+```bash
+# Start container with live source code mounting & turbopack
+docker compose -f docker-compose.dev.yml up --build
+```
+
+#### 3. Standalone Docker Build & Run
+
+```bash
+# Build production image
+docker build -t nextjs-client-boilerplate .
+
+# Run container
+docker run -p 3000:3000 --env-file .env nextjs-client-boilerplate
+```
+
 ---
 
 ## Component Library & UI Primitives
@@ -201,14 +233,21 @@ All UI primitives in `components/ui/` are built on `@base-ui/react` and styled w
 
 ## Available Scripts
 
-| Script                 | Description                                  |
-| ---------------------- | -------------------------------------------- |
-| `npm run dev`          | Starts the development server with Turbopack |
-| `npm run build`        | Builds the optimized production bundle       |
-| `npm run start`        | Starts the production server                 |
-| `npm run lint`         | Runs ESLint 9 checks across all files        |
-| `npm run format`       | Formats all code with Prettier               |
-| `npm run format:check` | Verifies code formatting compliance          |
+| Script                 | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `npm run dev`          | Starts the development server with Turbopack     |
+| `npm run build`        | Builds the optimized production bundle           |
+| `npm run start`        | Starts the production server                     |
+| `npm run lint`         | Runs ESLint checks across all files              |
+| `npm run type-check`   | Runs TypeScript type checking without emit       |
+| `npm run format`       | Formats all code with Prettier                   |
+| `npm run format:check` | Verifies code formatting compliance              |
+| `npm run validate`     | Runs lint, type-check, and format verification   |
+| `npm run docker:build` | Builds production Docker image                   |
+| `npm run docker:run`   | Runs production Docker container with `.env`     |
+| `npm run docker:up`    | Starts background containers with Docker Compose |
+| `npm run docker:down`  | Stops Docker Compose services                    |
+| `npm run docker:dev`   | Starts dev environment with Docker Compose       |
 
 ---
 

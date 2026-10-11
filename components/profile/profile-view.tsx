@@ -57,7 +57,7 @@ function ProfileInfoForm({ user, onSave, isSaving }: ProfileInfoFormProps) {
   const [username, setUsername] = React.useState(user.username || "");
   const [phone, setPhone] = React.useState(user.phone || "");
   const [bio, setBio] = React.useState(
-    "Software builder passionate about crafting clean, reliable applications.",
+    "Software builder passionate about crafting clean, reliable applications."
   );
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -457,7 +457,9 @@ export function ProfileView() {
                   Security Level
                 </span>
                 <span className="font-semibold text-foreground">
-                  {user.isEmailVerified ? "Standard (Verified)" : "Needs Action"}
+                  {user.isEmailVerified
+                    ? "Standard (Verified)"
+                    : "Needs Action"}
                 </span>
               </div>
 
@@ -486,7 +488,11 @@ export function ProfileView() {
         <div className="flex border-b border-border/80 gap-1 overflow-x-auto pb-px">
           {(
             [
-              { key: "overview", label: "Profile & Information", icon: UserIcon },
+              {
+                key: "overview",
+                label: "Profile & Information",
+                icon: UserIcon,
+              },
               { key: "security", label: "Security & Credentials", icon: Lock },
               {
                 key: "preferences",
@@ -507,7 +513,7 @@ export function ProfileView() {
                   "flex items-center gap-2 px-4 py-2.5 text-xs font-semibold whitespace-nowrap border-b-2 transition-all cursor-pointer",
                   isActive
                     ? "border-primary text-primary"
-                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-border",
+                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                 )}
               >
                 <Icon className="size-3.5" />
@@ -528,7 +534,8 @@ export function ProfileView() {
                     Personal Information
                   </h2>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Update your personal profile details and public display information.
+                    Update your personal profile details and public display
+                    information.
                   </p>
                 </div>
 
@@ -578,7 +585,10 @@ export function ProfileView() {
                   <div className="rounded-xl border border-border/70 bg-muted/20 p-3.5 space-y-1">
                     <span className="text-muted-foreground">Assigned Role</span>
                     <div className="flex items-center gap-2 pt-0.5">
-                      <Badge variant="outline" className="text-xs font-bold uppercase">
+                      <Badge
+                        variant="outline"
+                        className="text-xs font-bold uppercase"
+                      >
                         {user.role || "USER"}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
@@ -588,7 +598,9 @@ export function ProfileView() {
                   </div>
 
                   <div className="rounded-xl border border-border/70 bg-muted/20 p-3.5 space-y-1">
-                    <span className="text-muted-foreground">Authentication Method</span>
+                    <span className="text-muted-foreground">
+                      Authentication Method
+                    </span>
                     <div className="flex items-center gap-2 pt-0.5 font-medium text-foreground">
                       <Key className="size-3.5 text-primary" />
                       <span>{user.provider || "Local Password Auth"}</span>
@@ -596,7 +608,9 @@ export function ProfileView() {
                   </div>
 
                   <div className="rounded-xl border border-border/70 bg-muted/20 p-3.5 space-y-1">
-                    <span className="text-muted-foreground">Account Created</span>
+                    <span className="text-muted-foreground">
+                      Account Created
+                    </span>
                     <p className="font-medium text-foreground">
                       {user.createdAt
                         ? new Date(user.createdAt).toLocaleString("en-US", {
@@ -688,7 +702,10 @@ export function ProfileView() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label htmlFor="confirmPass" className="text-xs font-semibold">
+                    <Label
+                      htmlFor="confirmPass"
+                      className="text-xs font-semibold"
+                    >
                       Confirm New Password
                     </Label>
                     <Input
@@ -759,7 +776,7 @@ export function ProfileView() {
                       "text-xs",
                       twoFactorEnabled
                         ? "text-emerald-600 border-emerald-500/30"
-                        : "text-muted-foreground",
+                        : "text-muted-foreground"
                     )}
                   >
                     Status: {twoFactorEnabled ? "Active" : "Disabled"}
@@ -838,7 +855,8 @@ export function ProfileView() {
                   Communication & Notification Preferences
                 </h2>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Choose how and when you receive automated emails and platform alerts.
+                  Choose how and when you receive automated emails and platform
+                  alerts.
                 </p>
               </div>
 
@@ -849,7 +867,8 @@ export function ProfileView() {
                       Security & Login Alerts
                     </span>
                     <p className="text-muted-foreground">
-                      Receive instant emails when a new login occurs or credentials change.
+                      Receive instant emails when a new login occurs or
+                      credentials change.
                     </p>
                   </div>
                   <Switch
@@ -864,7 +883,8 @@ export function ProfileView() {
                       Product & Feature Announcements
                     </span>
                     <p className="text-muted-foreground">
-                      Get updates about new UI components, features, and release notes.
+                      Get updates about new UI components, features, and release
+                      notes.
                     </p>
                   </div>
                   <Switch
@@ -879,7 +899,8 @@ export function ProfileView() {
                       Weekly Digest
                     </span>
                     <p className="text-muted-foreground">
-                      A summary of your account activity, updates, and team notifications.
+                      A summary of your account activity, updates, and team
+                      notifications.
                     </p>
                   </div>
                   <Switch
@@ -937,7 +958,8 @@ export function ProfileView() {
                   Security Event Timeline
                 </h2>
                 <p className="text-xs text-muted-foreground mt-1">
-                  A real-time audit log of security and authentication events for this account.
+                  A real-time audit log of security and authentication events
+                  for this account.
                 </p>
               </div>
 
@@ -971,7 +993,8 @@ export function ProfileView() {
                       Profile Data Loaded
                     </span>
                     <p className="text-muted-foreground text-[11px]">
-                      Authenticated user state hydrated from local storage & cookies.
+                      Authenticated user state hydrated from local storage &
+                      cookies.
                     </p>
                     <span className="text-[10px] text-muted-foreground block pt-0.5">
                       Session start
@@ -987,7 +1010,8 @@ export function ProfileView() {
                       Account Registered
                     </span>
                     <p className="text-muted-foreground text-[11px]">
-                      Account created via {user.provider || "LOCAL"} credentials.
+                      Account created via {user.provider || "LOCAL"}{" "}
+                      credentials.
                     </p>
                     <span className="text-[10px] text-muted-foreground block pt-0.5">
                       {memberSinceFormatted}
@@ -1004,7 +1028,8 @@ export function ProfileView() {
                   Danger Zone
                 </h3>
                 <p className="text-xs text-muted-foreground">
-                  Permanently delete your user account and erase all associated session data.
+                  Permanently delete your user account and erase all associated
+                  session data.
                 </p>
               </div>
 
@@ -1014,7 +1039,7 @@ export function ProfileView() {
                 onClick={() => {
                   if (
                     confirm(
-                      "Are you sure you want to deactivate your account? This action cannot be undone.",
+                      "Are you sure you want to deactivate your account? This action cannot be undone."
                     )
                   ) {
                     handleSignOut();

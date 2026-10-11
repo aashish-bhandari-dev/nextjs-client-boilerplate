@@ -137,14 +137,16 @@ export function FeaturesSection() {
             variant="outline"
             className="text-xs px-3 py-1 text-primary border-primary/30"
           >
-            <Sparkles className="size-3 mr-1 inline" /> Built For Any Web Project
+            <Sparkles className="size-3 mr-1 inline" /> Built For Any Web
+            Project
           </Badge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
             Everything You Need To Build Modern Apps
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            A solid, extensible foundation with authentication, responsive layouts,
-            API integrations, and modern state management ready to deploy.
+            A solid, extensible foundation with authentication, responsive
+            layouts, API integrations, and modern state management ready to
+            deploy.
           </p>
 
           {/* Category Filter Pills */}
